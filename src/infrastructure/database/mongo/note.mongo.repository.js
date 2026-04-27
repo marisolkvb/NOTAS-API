@@ -1,4 +1,6 @@
-export default class NoteMongoRepository {
+import NoteModel from  "./note.model.js";
+
+export default class NoteMongoRepository { 
     async save(noteEntity) {
         const note = new NoteModel({
             title: noteEntity.title,
@@ -6,14 +8,13 @@ export default class NoteMongoRepository {
             imageUrl: noteEntity.imageUrl,
             isPrivate: noteEntity.isPrivate,
             password: noteEntity.password,
-            userId: noteEntity.userid
+            userId: noteEntity.userId
         });
         const savedNote = await note.save();
         return savedNote.toObject();
     }
-    async findByUserId(userId)
-    {
-        return await Notemodel.find({userId})
-        }
-        
+
+    async findByUserId(userId) {
+       return await NoteModel.find({ userId });
+    }
 }
